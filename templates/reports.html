@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports & Statistics | KIU Library</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="books-page reports-page">
+
+        <header class="page-header">
+            <h1>📊 Reports & Statistics</h1>
+            <p>Overview of KIU Library records and activities.</p>
+        </header>
+
+        <section class="books-list-section">
+
+            <h2>Library Statistics</h2>
+
+            <div class="table-container">
+
+                <table class="books-table">
+
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Total Book Titles</td>
+                            <td>{{ total_books }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Total Students</td>
+                            <td>{{ total_students }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Currently Issued Books</td>
+                            <td>{{ issued_books }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Returned Books</td>
+                            <td>{{ returned_books }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Overdue Books</td>
+                            <td>{{ overdue_books }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Available Copies</td>
+                            <td>{{ available_copies }}</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <a href="{{ url_for('home') }}" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+</html>
+

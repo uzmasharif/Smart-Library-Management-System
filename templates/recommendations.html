@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Book Recommendations | KIU Smart Library</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="student-dashboard-page">
+
+    <nav class="student-navbar">
+
+        <div class="student-brand">
+            <div class="student-logo">KIU</div>
+
+            <div>
+                <h2>KIU Smart Library</h2>
+                <span>AI Book Assistant</span>
+            </div>
+        </div>
+
+        <div class="student-nav-links">
+
+            <a href="{{ url_for('student_dashboard') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('my_borrowed_books') }}">
+                My Borrowed Books
+            </a>
+
+            <form method="POST" action="{{ url_for('logout') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="student-logout">
+                    Logout
+                </button>
+            </form>
+
+        </div>
+
+    </nav>
+
+
+    <main class="student-main">
+
+        <section class="student-welcome">
+
+            <div>
+                <span class="student-eyebrow">
+                    SMART LIBRARY AI FEATURE
+                </span>
+
+                <h1>AI Book Recommendation Assistant</h1>
+
+                <p>
+                    Tell us about your interests or learning topic.
+                    Our recommendation system will find relevant
+                    available books from the library.
+                </p>
+            </div>
+
+            <div class="welcome-icon">🤖</div>
+
+        </section>
+
+
+        <section class="student-books-section">
+
+            <div class="student-section-heading">
+                <div>
+                    <span class="student-eyebrow">
+                        PERSONALIZED DISCOVERY
+                    </span>
+
+                    <h2>Find Your Next Book</h2>
+
+                    <p>Enter a topic such as Python, Mathematics or Biology.</p>
+                </div>
+            </div>
+
+
+            <form method="POST"
+                  action="{{ url_for('recommend_books_page') }}"
+                  class="student-search">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input
+                    type="text"
+                    name="topic"
+                    placeholder="What would you like to learn?"
+                    value="{{ topic }}"
+                    required
+                >
+
+                <button type="submit">
+                    Get Recommendations
+                </button>
+
+            </form>
+
+
+            {% if recommendations %}
+
+            <h2>Recommended Books</h2>
+
+            <div class="student-table-wrapper">
+
+                <table class="student-books-table">
+
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Similarity Score</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for item in recommendations %}
+
+                        <tr>
+                            <td class="student-book-title">
+                                {{ item.book["title"] }}
+                            </td>
+
+                            <td>{{ item.book["author"] }}</td>
+
+                            <td>
+                                <span class="category-label">
+                                    {{ item.book["category"] }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {{ item.score }}%
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {% elif topic %}
+
+            <p class="student-empty">
+                No matching books found. Try another topic.
+            </p>
+
+            {% endif %}
+
+        </section>
+
+
+        <footer class="student-footer">
+            <p>KIU Smart Library Management System</p>
+            <span>Knowledge • Learning • Excellence</span>
+        </footer>
+
+    </main>
+
+</body>
+</html>

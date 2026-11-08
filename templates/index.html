@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | KIU Smart Library</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="admin-dashboard-page">
+
+    <!-- University Header -->
+    <header class="admin-header">
+
+        <div class="admin-brand">
+
+            <img src="{{ url_for('static', filename='images/kiu-logo.png') }}"
+                 alt="KIU Logo">
+
+            <div>
+                <h1>Karakoram International University</h1>
+                <p>SMART LIBRARY MANAGEMENT SYSTEM</p>
+            </div>
+
+        </div>
+
+        <div class="admin-portal-label">
+            <span class="admin-online-dot"></span>
+            ADMIN PORTAL
+        </div>
+
+    </header>
+
+
+    <!-- Main Layout -->
+    <div class="admin-layout">
+
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+
+            <h3 class="sidebar-heading">MAIN MENU</h3>
+
+            <nav class="admin-navigation">
+
+                <a href="{{ url_for('home') }}"
+                   class="admin-nav-link active">
+                    <span>▦</span> Dashboard
+                </a>
+
+                <a href="#modules" class="admin-nav-link">
+                    <span>◇</span> Library Modules
+                </a>
+
+                <a href="{{ url_for('books') }}"
+                   class="admin-nav-link">
+                    <span>📚</span> Books Management
+                </a>
+
+                <a href="{{ url_for('students') }}"
+                   class="admin-nav-link">
+                    <span>🎓</span> Students Management
+                </a>
+
+                <a href="{{ url_for('borrow') }}"
+                   class="admin-nav-link">
+                    <span>📖</span> Borrowing & Returning
+                </a>
+
+                <a href="{{ url_for('availability') }}"
+                   class="admin-nav-link">
+                    <span>📗</span> Book Availability
+                </a>
+
+                <a href="{{ url_for('overdue') }}"
+                   class="admin-nav-link">
+                    <span>⏰</span> Overdue Management
+                </a>
+
+                <a href="{{ url_for('reports') }}"
+                   class="admin-nav-link">
+                    <span>📊</span> Reports & Statistics
+                </a>
+
+            </nav>
+
+
+            <!-- Sidebar Bottom -->
+            <div class="admin-sidebar-bottom">
+
+                <div class="sidebar-university">
+                    <span>KIU</span>
+                    <p>Knowledge • Learning • Excellence</p>
+                </div>
+
+                <form action="{{ url_for('logout') }}" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="admin-logout-btn">
+                        → Logout
+                    </button>
+                </form>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="admin-main-content">
+
+            <!-- Page Heading -->
+            <section class="admin-page-heading">
+
+                <div>
+                    <span class="admin-eyebrow">
+                        UNIVERSITY LIBRARY PORTAL
+                    </span>
+
+                    <h2>Dashboard Overview</h2>
+
+                    <p>Manage your library operations from one place.</p>
+                </div>
+
+                <div class="admin-welcome-label">
+                    <span>●</span> System Overview
+                </div>
+
+            </section>
+
+
+            <!-- Welcome Banner -->
+            <section class="admin-welcome-banner">
+
+                <div>
+                    <span class="admin-banner-label">
+                        WELCOME TO KIU LIBRARY
+                    </span>
+
+                    <h1>Smart Library Management System</h1>
+
+                    <p>
+                        Manage books, students and borrowing activities
+                        through one centralized platform.
+                    </p>
+                </div>
+
+                <div class="admin-banner-icon">🏛️</div>
+
+            </section>
+
+
+            <!-- Dashboard Statistics -->
+            <section class="admin-statistics">
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-top">
+                        Total Books
+                        <span class="admin-stat-icon">📚</span>
+                    </div>
+                    <h2>{{ total_books }}</h2>
+                    <p>Books in library</p>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-top">
+                        Total Students
+                        <span class="admin-stat-icon">🎓</span>
+                    </div>
+                    <h2>{{ total_students }}</h2>
+                    <p>Registered students</p>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-top">
+                        Issued Books
+                        <span class="admin-stat-icon">📖</span>
+                    </div>
+                    <h2>{{ issued_books }}</h2>
+                    <p>Currently borrowed</p>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-top">
+                        Available Copies
+                        <span class="admin-stat-icon">📗</span>
+                    </div>
+                    <h2>{{ available_books }}</h2>
+                    <p>Ready to borrow</p>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-top">
+                        Overdue Books
+                        <span class="admin-stat-icon">⏰</span>
+                    </div>
+                    <h2>{{ overdue_books }}</h2>
+                    <p>Past their due dates</p>
+                </div>
+
+            </section>
+
+
+            <!-- Search Section -->
+            <section class="admin-search-section">
+
+                <div>
+                    <h3>Quick Search</h3>
+                    <p>Find a library management module.</p>
+                </div>
+
+                <div class="admin-search-box">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search library modules...">
+
+                    <button id="searchButton" type="button">
+                        Search
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- Library Modules -->
+            <section class="admin-modules-section" id="modules">
+
+                <div class="admin-section-heading">
+
+                    <span class="admin-eyebrow">
+                        LIBRARY OPERATIONS
+                    </span>
+
+                    <h2>Library Management</h2>
+
+                    <p>
+                        Choose a module to manage library activities.
+                    </p>
+
+                </div>
+
+
+                <div class="admin-module-grid">
+
+                    <div class="admin-module-card module-card"
+                         id="books">
+
+                        <div class="admin-module-icon">📚</div>
+
+                        <h3>Books Management</h3>
+
+                        <p>
+                            Add, update, delete and search library books.
+                        </p>
+
+                        <a href="{{ url_for('books') }}">
+                            Explore Books →
+                        </a>
+
+                    </div>
+
+
+                    <div class="admin-module-card module-card"
+                         id="students">
+
+                        <div class="admin-module-icon">🎓</div>
+
+                        <h3>Students Management</h3>
+
+                        <p>
+                            Manage student information and records.
+                        </p>
+
+                        <a href="{{ url_for('students') }}">
+                            Explore Students →
+                        </a>
+
+                    </div>
+
+
+                    <div class="admin-module-card module-card"
+                         id="borrowing">
+
+                        <div class="admin-module-icon">📖</div>
+
+                        <h3>Borrowing & Returning</h3>
+
+                        <p>
+                            Manage book issuing and returning activities.
+                        </p>
+
+                        <a href="{{ url_for('borrow') }}">
+                            Explore Borrowing →
+                        </a>
+
+                    </div>
+
+
+                    <div class="admin-module-card module-card"
+                         id="availability">
+
+                        <div class="admin-module-icon">📗</div>
+
+                        <h3>Book Availability</h3>
+
+                        <p>
+                            Check available and issued book copies.
+                        </p>
+
+                        <a href="{{ url_for('availability') }}">
+                            Explore Availability →
+                        </a>
+
+                    </div>
+
+
+                    <div class="admin-module-card module-card"
+                         id="overdue">
+
+                        <div class="admin-module-icon">⏰</div>
+
+                        <h3>Overdue Management</h3>
+
+                        <p>
+                            Monitor books that have passed their due dates.
+                        </p>
+
+                        <a href="{{ url_for('overdue') }}">
+                            Explore Overdue →
+                        </a>
+
+                    </div>
+
+
+                    <div class="admin-module-card module-card"
+                         id="reports">
+
+                        <div class="admin-module-icon">📊</div>
+
+                        <h3>Reports & Statistics</h3>
+
+                        <p>
+                            View library records and activity reports.
+                        </p>
+
+                        <a href="{{ url_for('reports') }}">
+                            Explore Reports →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <p id="noResults" class="admin-no-results" hidden>
+                    No matching modules found.
+                </p>
+
+            </section>
+
+
+            <!-- Footer -->
+            <footer class="admin-footer">
+
+                © 2026 Karakoram International University
+
+                <br>
+
+                <span>Smart Library Management System</span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

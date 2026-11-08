@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Borrowing Management | KIU Library</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="books-page borrow-page">
+
+        <header class="page-header">
+            <h1>📚 Borrowing & Returning Management</h1>
+            <p>Manage book issuing, returning and overdue records.</p>
+        </header>
+
+        <!-- Issue Book Section -->
+        <section class="book-form-section">
+
+            <h2>Issue a New Book</h2>
+
+            <form action="{{ url_for('borrow_book') }}"
+                  method="POST"
+                  class="book-form borrow-form">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-group">
+                    <label>Select Student</label>
+
+                    <select name="student_id" required>
+                        <option value="">Choose Student</option>
+
+                        {% for student in students %}
+                        <option value="{{ student.id }}">
+                            {{ student.name }} - {{ student.roll_no }}
+                        </option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Book</label>
+
+                    <select name="book_id" required>
+                        <option value="">Choose Book</option>
+
+                        {% for book in books %}
+                        {% if book.quantity > 0 %}
+                        <option value="{{ book.id }}">
+                            {{ book.title }} (Available: {{ book.quantity }})
+                        </option>
+                        {% endif %}
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Borrow Date</label>
+                    <input type="date" name="borrow_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Due Date</label>
+                    <input type="date" name="due_date" required>
+                </div>
+
+                <button type="submit">Issue Book</button>
+
+            </form>
+
+        </section>
+
+        <!-- Issued Books Section -->
+        <section class="books-list-section">
+
+            <h2>Issued Books Records</h2>
+
+            <div class="table-container">
+
+                <table class="books-table">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Roll Number</th>
+                            <th>Book Title</th>
+                            <th>Borrow Date</th>
+                            <th>Due Date</th>
+                            <th>Return Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for record in borrow_records %}
+
+                        <tr>
+                            <td>{{ record.id }}</td>
+                            <td>{{ record.student_name }}</td>
+                            <td>{{ record.roll_no }}</td>
+                            <td>{{ record.book_title }}</td>
+                            <td>{{ record.borrow_date }}</td>
+                            <td>{{ record.due_date }}</td>
+                            <td>{{ record.return_date or 'Not Returned' }}</td>
+
+                            <td>
+                                {% if record.status == 'Borrowed' %}
+                                    <span class="status-borrowed">Borrowed</span>
+                                {% else %}
+                                    <span class="status-returned">Returned</span>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% if record.status == 'Borrowed' %}
+
+                                <form action="{{ url_for('return_book', record_id=record.id) }}"
+                                      method="POST"
+                                      onsubmit="return confirm('Are you sure you want to return this book?')">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="return-btn">
+                                        Return Book
+                                    </button>
+
+                                </form>
+
+                                {% else %}
+                                    Returned
+                                {% endif %}
+                            </td>
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+                            <td colspan="9">No borrowing records found.</td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- Overdue Books Section -->
+        <section class="books-list-section">
+
+            <h2>⚠️ Overdue Books</h2>
+
+            <div class="table-container">
+
+                <table class="books-table">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Roll Number</th>
+                            <th>Book Title</th>
+                            <th>Borrow Date</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for record in overdue_records %}
+
+                        <tr>
+                            <td>{{ record.id }}</td>
+                            <td>{{ record.student_name }}</td>
+                            <td>{{ record.roll_no }}</td>
+                            <td>{{ record.book_title }}</td>
+                            <td>{{ record.borrow_date }}</td>
+                            <td>{{ record.due_date }}</td>
+                            <td>
+                                <span class="status-overdue">Overdue</span>
+                            </td>
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+                            <td colspan="7">No overdue books found.</td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <a href="{{ url_for('home') }}" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+</html>
+

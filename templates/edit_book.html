@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book | KIU Library</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <h1>Edit Book Information</h1>
+
+    <form action="{{ url_for('edit_book', book_id=book.id) }}" method="POST">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label>Book Title</label>
+        <input type="text" name="title"
+               value="{{ book.title }}" required>
+
+        <label>Author Name</label>
+        <input type="text" name="author"
+               value="{{ book.author }}" required>
+
+        <label>Category</label>
+        <input type="text" name="category"
+               value="{{ book.category }}" required>
+
+        <label>Quantity</label>
+        <input type="number" name="quantity"
+               value="{{ book.quantity }}" min="0" required>
+
+        <button type="submit">Update Book</button>
+
+    </form>
+
+    <br>
+
+    <a href="{{ url_for('books') }}">Back to Books</a>
+
+</body>
+</html>

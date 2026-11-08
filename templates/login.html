@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | KIU Smart Library</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="login-page">
+
+    <div class="login-wrapper">
+
+        <!-- Left Branding Section -->
+        <div class="login-brand">
+
+            <div class="brand-logo">KIU</div>
+
+            <p class="brand-university">
+                KARAKORAM INTERNATIONAL UNIVERSITY
+            </p>
+
+            <h1>Smart Library<br>Management System</h1>
+
+            <p class="brand-description">
+                Discover knowledge, explore resources,
+                and make your learning journey smarter.
+            </p>
+
+            <div class="brand-footer">
+                Knowledge • Learning • Excellence
+            </div>
+
+        </div>
+
+
+        <!-- Right Login Section -->
+        <div class="login-form-section">
+
+            <div class="login-card">
+
+                <div class="login-heading">
+                    <span class="welcome-label">WELCOME BACK</span>
+
+                    <h2>Sign In</h2>
+
+                    <p>
+                        Access your KIU Smart Library account.
+                    </p>
+                </div>
+
+
+                {% if error %}
+                    <div class="login-error">
+                        {{ error }}
+                    </div>
+                {% endif %}
+
+
+                <form method="POST">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+
+                        <label for="username">Username</label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter your username"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">Password</label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button type="submit" class="login-button">
+                        Sign In
+                        <span>→</span>
+                    </button>
+
+                </form>
+
+
+                <div class="login-register">
+
+                    <p>New to KIU Smart Library?</p>
+
+                    <a href="{{ url_for('register') }}">
+                        Create Student Account
+                    </a>
+
+                </div>
+
+                <div class="login-bottom">
+                    KIU Smart Library Management System
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

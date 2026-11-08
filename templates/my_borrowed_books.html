@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Borrowed Books | KIU Smart Library</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="student-dashboard-page">
+
+    <!-- Navigation Bar -->
+    <nav class="student-navbar">
+
+        <div class="student-brand">
+
+            <div class="student-logo">KIU</div>
+
+            <div>
+                <h2>KIU Smart Library</h2>
+                <span>Student Portal</span>
+            </div>
+
+        </div>
+
+        <div class="student-nav-links">
+
+            <a href="{{ url_for('student_dashboard') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('my_borrowed_books') }}">
+                My Borrowed Books
+            </a>
+
+            <form method="POST" action="{{ url_for('logout') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="student-logout">
+                    Logout
+                </button>
+            </form>
+
+        </div>
+
+    </nav>
+
+
+    <main class="student-main">
+
+        <!-- Page Welcome Banner -->
+        <section class="student-welcome">
+
+            <div>
+
+                <span class="student-eyebrow">
+                    STUDENT LIBRARY PORTAL
+                </span>
+
+                <h1>My Borrowed Books</h1>
+
+                <p>
+                    Keep track of your borrowed books,
+                    borrowing dates and return deadlines.
+                </p>
+
+            </div>
+
+            <div class="welcome-icon">📚</div>
+
+        </section>
+
+
+        <!-- Borrowing Records -->
+        <section class="student-books-section">
+
+            <div class="student-section-heading">
+
+                <span class="student-eyebrow">
+                    YOUR LIBRARY ACTIVITY
+                </span>
+
+                <h2>My Borrowing Records</h2>
+
+                <p>
+                    View your book borrowing history and return status.
+                </p>
+
+            </div>
+
+
+            <div class="student-table-wrapper">
+
+                <table class="student-books-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Borrow Date</th>
+                            <th>Due Date</th>
+                            <th>Return Date</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for book in borrowed_books %}
+
+                        <tr>
+
+                            <td class="student-book-title">
+                                {{ book["title"] }}
+                            </td>
+
+                            <td>
+                                {{ book["author"] }}
+                            </td>
+
+                            <td>
+                                {{ book["borrow_date"] }}
+                            </td>
+
+                            <td>
+                                {{ book["due_date"] }}
+                            </td>
+
+                            <td>
+                                {{ book["return_date"] or "Not Returned" }}
+                            </td>
+
+                            <td>
+
+                                {% if book["status"] == "Returned" %}
+
+                                    <span class="status-returned">
+                                        Returned
+                                    </span>
+
+                                {% elif book["status"] == "Borrowed" %}
+
+                                    <span class="status-borrowed">
+                                        Borrowed
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="status-other">
+                                        {{ book["status"] }}
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+
+                            <td colspan="6" class="student-empty">
+
+                                <div class="empty-book-icon">📖</div>
+
+                                <h3>No Borrowing Records</h3>
+
+                                <p>
+                                    You have not borrowed any books yet.
+                                </p>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="borrowed-back">
+
+                <a href="{{ url_for('student_dashboard') }}">
+                    ← Back to Dashboard
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="student-footer">
+
+            <p>KIU Smart Library Management System</p>
+
+            <span>
+                Knowledge • Learning • Excellence
+            </span>
+
+        </footer>
+
+    </main>
+
+</body>
+</html>
+

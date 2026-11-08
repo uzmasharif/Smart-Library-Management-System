@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Overdue Management | KIU Library</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="books-page">
+
+        <header class="page-header">
+            <h1>⚠️ Overdue Management</h1>
+            <p>Monitor and manage books that have passed their due dates.</p>
+        </header>
+
+        <section class="books-list-section">
+
+            <h2>Overdue Books Records</h2>
+
+            <div class="table-container">
+
+                <table class="books-table">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Roll Number</th>
+                            <th>Book Title</th>
+                            <th>Borrow Date</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for record in overdue_records %}
+
+                        <tr>
+                            <td>{{ record.id }}</td>
+                            <td>{{ record.student_name }}</td>
+                            <td>{{ record.roll_no }}</td>
+                            <td>{{ record.book_title }}</td>
+                            <td>{{ record.borrow_date }}</td>
+                            <td>{{ record.due_date }}</td>
+
+                            <td>
+                                <span class="status-overdue">Overdue</span>
+                            </td>
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+                            <td colspan="7">No overdue books found.</td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <a href="{{ url_for('home') }}" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration | KIU Smart Library</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="login-page">
+
+    <div class="login-wrapper">
+
+        <!-- Left Branding Section -->
+        <div class="login-brand">
+
+            <div class="brand-logo">KIU</div>
+
+            <p class="brand-university">
+                KARAKORAM INTERNATIONAL UNIVERSITY
+            </p>
+
+            <h1>Join Our<br>Learning Community</h1>
+
+            <p class="brand-description">
+                Create your student account and explore
+                thousands of learning opportunities through
+                KIU Smart Library.
+            </p>
+
+            <div class="brand-footer">
+                Knowledge • Learning • Excellence
+            </div>
+
+        </div>
+
+
+        <!-- Right Registration Section -->
+        <div class="login-form-section">
+
+            <div class="login-card register-card">
+
+                <div class="login-heading">
+
+                    <span class="welcome-label">
+                        STUDENT PORTAL
+                    </span>
+
+                    <h2>Create Account</h2>
+
+                    <p>
+                        Fill in your details to register.
+                    </p>
+
+                </div>
+
+
+                {% if error %}
+                    <div class="login-error">
+                        {{ error }}
+                    </div>
+                {% endif %}
+
+
+                <form method="POST">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+
+                        <input type="text"
+                               id="name"
+                               name="name"
+                               placeholder="Enter your full name"
+                               required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="roll_no">Roll Number</label>
+
+                        <input type="text"
+                               id="roll_no"
+                               name="roll_no"
+                               placeholder="Enter your roll number"
+                               required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="department">Department</label>
+
+                        <input type="text"
+                               id="department"
+                               name="department"
+                               placeholder="Enter your department"
+                               required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="semester">Semester</label>
+
+                        <input type="number"
+                               id="semester"
+                               name="semester"
+                               placeholder="Enter your semester"
+                               min="1"
+                               max="12"
+                               required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+
+                        <input type="email"
+                               id="email"
+                               name="email"
+                               placeholder="Enter your email address"
+                               required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="username">Create Username</label>
+
+                        <input type="text"
+                               id="username"
+                               name="username"
+                               placeholder="Choose a username"
+                               required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="password">Create Password</label>
+
+                        <input type="password"
+                               id="password"
+                               name="password"
+                               placeholder="Create a password"
+                               required>
+                    </div>
+
+
+                    <button type="submit" class="login-button">
+                        Create Account
+                        <span>→</span>
+                    </button>
+
+                </form>
+
+
+                <div class="login-register">
+
+                    <p>Already have an account?</p>
+
+                    <a href="{{ url_for('login') }}">
+                        Sign In
+                    </a>
+
+                </div>
+
+
+                <div class="login-bottom">
+                    KIU Smart Library Management System
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+

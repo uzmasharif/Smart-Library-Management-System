@@ -1,0 +1,2198 @@
+
+/* 1. Basic Settings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6fa;
+    color: #243650;
+}
+
+/* 2. University Header */
+.header {
+    background: #102d59;
+    color: white;
+    padding: 16px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.brand img {
+    width: 72px;
+    height: 72px;
+    background: white;
+    border-radius: 8px;
+    padding: 3px;
+    object-fit: contain;
+}
+
+.brand h1 {
+    font-size: 20px;
+}
+
+.brand p {
+    color: #e8c16e;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-top: 8px;
+}
+
+.portal-label {
+    border: 1px solid #e8c16e;
+    color: #e8c16e;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+/* 3. Page Layout */
+.layout {
+    display: flex;
+    min-height: calc(100vh - 104px);
+}
+
+/* 4. Sidebar */
+.sidebar {
+    width: 230px;
+    background: white;
+    padding: 28px 16px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+    flex-shrink: 0;
+}
+
+.sidebar h3 {
+    color: #8995a8;
+    font-size: 12px;
+    margin: 0 12px 20px;
+}
+
+.sidebar a {
+    display: block;
+    text-decoration: none;
+    color: #526178;
+    padding: 13px;
+    margin-bottom: 7px;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.sidebar a:hover {
+    background: #eaf0fa;
+    color: #174a91;
+}
+
+/* 5. Main Content */
+.main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+/* 6. Welcome Section */
+.welcome {
+    background: linear-gradient(120deg, #153b70, #3270ad);
+    padding: 35px;
+    border-radius: 12px;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.welcome-label {
+    color: #f0ce7c;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 13px;
+}
+
+.welcome h2 {
+    font-size: 29px;
+    margin-bottom: 13px;
+}
+
+.welcome p:last-child {
+    color: #e3ebf6;
+    line-height: 1.6;
+}
+
+/* 7. Search Section */
+.search-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 35px;
+}
+
+.search-section input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid #d8e0eb;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.search-section button {
+    background: #174a91;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 0 25px;
+    cursor: pointer;
+}
+
+.search-section button:hover {
+    background: #102d59;
+}
+
+/* 8. Module Section */
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.section-heading p {
+    color: #8490a2;
+    font-size: 14px;
+}
+
+/* 9. Module Cards */
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.module-card {
+    background: white;
+    padding: 23px;
+    border: 1px solid #e7edf4;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.module-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(20,50,90,0.09);
+}
+
+.module-icon {
+    font-size: 30px;
+    margin-bottom: 14px;
+}
+
+.module-card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.module-card p {
+    font-size: 13px;
+    color: #78869a;
+    line-height: 1.6;
+    min-height: 42px;
+    margin-bottom: 15px;
+}
+
+.module-card a {
+    color: #20569c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* 10. No Results */
+#noResults {
+    margin-top: 20px;
+    color: #a13d3d;
+}
+
+/* 11. Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 1px solid #e2e7ef;
+    color: #8490a2;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* 12. Responsive Design */
+@media (max-width: 950px) {
+    .module-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .header {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .brand h1 {
+        font-size: 14px;
+    }
+
+    .brand img {
+        width: 58px;
+        height: 58px;
+    }
+
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .sidebar h3 {
+        display: none;
+    }
+
+    .sidebar a {
+        padding: 9px;
+        font-size: 12px;
+    }
+
+    .main-content {
+        padding: 18px;
+    }
+
+    .module-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome h2 {
+        font-size: 22px;
+    }
+}
+/* Dashboard Statistics */
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #1b5e20;
+    transition: 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.stat-card p {
+    color: #1b5e20;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* 13. Professional Sidebar Design */
+
+.sidebar {
+    background: #102d59;
+    width: 250px;
+    padding: 28px 16px;
+    box-shadow: 3px 0 12px rgba(0, 0, 0, 0.12);
+}
+
+.sidebar h3 {
+    color: #e8c16e;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+}
+
+.sidebar a {
+    color: #ffffff;
+    padding: 14px;
+    margin-bottom: 9px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.sidebar a:hover {
+    background: #20569c;
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+/* Sidebar spacing */
+.sidebar a:last-child {
+    margin-bottom: 0;
+}
+
+/* 14. Professional Module Cards */
+
+.module-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.module-card {
+    background: #ffffff;
+    padding: 25px;
+    border: 1px solid #dce5f1;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(16, 45, 89, 0.05);
+    transition: all 0.3s ease;
+}
+
+.module-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(16, 45, 89, 0.13);
+    border-color: #3270ad;
+}
+
+.module-icon {
+    font-size: 35px;
+    margin-bottom: 16px;
+}
+
+.module-card h3 {
+    color: #102d59;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.module-card p {
+    color: #687991;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.module-card a {
+    display: inline-block;
+    background: #174a91;
+    color: white;
+    padding: 11px 17px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.3s ease;
+}
+
+.module-card a:hover {
+    background: #102d59;
+    transform: translateY(-2px);
+}
+
+/* 15. Professional Dashboard Statistics */
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 18px;
+    margin: 30px 0;
+}
+
+.stat-card {
+    background: linear-gradient(145deg, #ffffff, #f2f6fc);
+    padding: 25px 20px;
+    border: 1px solid #dce5f1;
+    border-left: 5px solid #174a91;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(16, 45, 89, 0.07);
+    transition: 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 22px rgba(16, 45, 89, 0.13);
+}
+
+.stat-card h3 {
+    color: #687991;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.stat-card p {
+    color: #102d59;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* 16. Professional Header and Welcome Section */
+
+.header {
+    background: linear-gradient(120deg, #102d59, #174a91);
+    padding: 18px 30px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.brand h1 {
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.brand p {
+    color: #e8c16e;
+    font-weight: 600;
+}
+
+.brand img {
+    border: 2px solid #e8c16e;
+}
+
+.portal-label {
+    background: rgba(255, 255, 255, 0.08);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.welcome {
+    background: linear-gradient(120deg, #102d59, #3270ad);
+    padding: 42px;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(16, 45, 89, 0.15);
+}
+
+.welcome h2 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.welcome p:last-child {
+    max-width: 650px;
+    font-size: 15px;
+}
+
+/* 17. Professional Books Management Page */
+
+.books-page {
+    padding: 35px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.page-header {
+    background: linear-gradient(120deg, #102d59, #3270ad);
+    color: white;
+    padding: 30px;
+    border-radius: 14px;
+    margin-bottom: 28px;
+    box-shadow: 0 6px 18px rgba(16, 45, 89, 0.12);
+}
+
+.page-header h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    color: #e3ebf6;
+}
+
+.book-form-section,
+.books-list-section {
+    background: white;
+    padding: 28px;
+    border-radius: 13px;
+    margin-bottom: 25px;
+    border: 1px solid #dce5f1;
+    box-shadow: 0 4px 15px rgba(16, 45, 89, 0.06);
+}
+
+.book-form-section h2,
+.books-list-section h2 {
+    color: #102d59;
+    font-size: 22px;
+    margin-bottom: 22px;
+}
+
+.book-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.book-form input,
+.book-search input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d4deeb;
+    border-radius: 7px;
+    font-size: 14px;
+    outline: none;
+}
+
+.book-form input:focus,
+.book-search input:focus {
+    border-color: #174a91;
+    box-shadow: 0 0 0 3px rgba(23, 74, 145, 0.10);
+}
+
+.book-form button,
+.book-search button {
+    background: #174a91;
+    color: white;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.book-form button:hover,
+.book-search button:hover {
+    background: #102d59;
+}
+
+.book-search {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.book-search input {
+    flex: 1;
+    min-width: 0;
+}
+
+.book-search a {
+    color: #174a91;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.books-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.books-table th {
+    background: #102d59;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.books-table td {
+    padding: 14px;
+    border-bottom: 1px solid #e4eaf2;
+    color: #40516a;
+    font-size: 14px;
+}
+
+.books-table tbody tr:hover {
+    background: #f1f5fb;
+}
+
+.delete-btn {
+    background: #c0392b;
+    color: white;
+    border: none;
+    padding: 8px 13px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    display: inline-block;
+    background: #174a91;
+    color: white;
+    padding: 8px 13px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.delete-btn:hover {
+    background: #922b21;
+}
+
+.edit-btn:hover {
+    background: #102d59;
+}
+
+.back-btn {
+    display: inline-block;
+    background: #102d59;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 7px;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+.back-btn:hover {
+    background: #174a91;
+}
+
+@media (max-width: 650px) {
+    .books-page {
+        padding: 15px;
+    }
+
+    .book-form {
+        grid-template-columns: 1fr;
+    }
+
+    .book-search {
+        flex-wrap: wrap;
+    }
+
+    .book-search input {
+        flex-basis: 100%;
+    }
+
+    .page-header h1 {
+        font-size: 23px;
+    }
+}
+
+/* 18. Professional Students Management Page */
+
+.books-page {
+    max-width: 1400px;
+    margin: auto;
+}
+
+.book-form input,
+.book-search input {
+    background: #ffffff;
+    color: #243650;
+}
+
+.books-table th {
+    background: #102d59;
+    color: white;
+}
+
+.books-table td {
+    vertical-align: middle;
+}
+
+.books-table tbody tr:nth-child(even) {
+    background: #f5f8fc;
+}
+
+.books-table tbody tr:hover {
+    background: #eaf1fa;
+}
+
+.book-form button,
+.book-search button,
+.delete-btn,
+.edit-btn,
+.back-btn {
+    transition: 0.3s ease;
+}
+
+.book-form button:hover,
+.book-search button:hover,
+.edit-btn:hover,
+.back-btn:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 650px) {
+    .books-page {
+        padding: 15px;
+    }
+
+    .books-list-section,
+    .book-form-section {
+        padding: 18px;
+    }
+
+    .books-table {
+        min-width: 750px;
+    }
+}
+
+/* 19. Professional Borrowing Management Page */
+
+.borrow-page .borrow-form {
+    align-items: end;
+}
+
+.borrow-page .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.borrow-page .form-group label {
+    color: #102d59;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.borrow-page .form-group input,
+.borrow-page .form-group select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d4deeb;
+    border-radius: 7px;
+    background: white;
+    color: #243650;
+    font-size: 14px;
+    outline: none;
+}
+
+.borrow-page .form-group input:focus,
+.borrow-page .form-group select:focus {
+    border-color: #174a91;
+    box-shadow: 0 0 0 3px rgba(23, 74, 145, 0.10);
+}
+
+.borrow-page .borrow-form button {
+    background: #174a91;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.borrow-page .borrow-form button:hover {
+    background: #102d59;
+}
+
+.return-btn {
+    background: #218838;
+    color: white;
+    border: none;
+    padding: 9px 13px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.return-btn:hover {
+    background: #17692b;
+}
+
+.status-borrowed,
+.status-returned,
+.status-overdue {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-borrowed {
+    background: #fff0cc;
+    color: #946200;
+}
+
+.status-returned {
+    background: #d9f2df;
+    color: #17692b;
+}
+
+.status-overdue {
+    background: #fbe0e0;
+    color: #a32626;
+}
+
+.borrow-page .books-list-section {
+    margin-top: 25px;
+}
+
+@media (max-width: 650px) {
+    .borrow-page .borrow-form {
+        grid-template-columns: 1fr;
+    }
+
+    .borrow-page .books-table {
+        min-width: 850px;
+    }
+}
+
+/* =================================
+   PROFESSIONAL LOGIN PAGE
+================================= */
+
+.login-page {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f1f4f9;
+}
+
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+}
+
+/* LEFT BRANDING */
+
+.login-brand {
+    width: 45%;
+    background: linear-gradient(145deg, #071b36, #123c68);
+    color: white;
+    padding: 70px 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.brand-logo {
+    width: 75px;
+    height: 75px;
+    border: 2px solid #d6b56d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e4c77f;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.brand-university {
+    color: #e4c77f;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.login-brand h1 {
+    font-size: 39px;
+    line-height: 1.3;
+    margin: 25px 0 15px;
+}
+
+.brand-description {
+    color: #d2dce9;
+    font-size: 15px;
+    line-height: 1.9;
+    max-width: 420px;
+}
+
+.brand-footer {
+    color: #e4c77f;
+    margin-top: 65px;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+
+/* RIGHT LOGIN SECTION */
+
+.login-form-section {
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    padding: 45px;
+    border-radius: 16px;
+    box-shadow: 0 12px 45px rgba(20, 40, 70, 0.09);
+    box-sizing: border-box;
+}
+
+.welcome-label {
+    color: #b18b42;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.login-heading h2 {
+    color: #102c4e;
+    font-size: 34px;
+    margin: 12px 0;
+}
+
+.login-heading p {
+    color: #7a8797;
+    font-size: 14px;
+    margin-bottom: 32px;
+}
+
+
+/* INPUT FIELDS */
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    color: #253c57;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #dce3ec;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #174b7a;
+    box-shadow: 0 0 0 3px rgba(23, 75, 122, 0.10);
+}
+
+
+/* LOGIN BUTTON */
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background: #102f53;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    align-items: center;
+}
+
+.login-button:hover {
+    background: #b18b42;
+    transform: translateY(-2px);
+}
+
+
+/* ERROR MESSAGE */
+
+.login-error {
+    background: #fff0f0;
+    color: #bd3030;
+    padding: 12px;
+    border-radius: 7px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+
+/* REGISTER LINK */
+
+.login-register {
+    text-align: center;
+    margin-top: 27px;
+}
+
+.login-register p {
+    color: #7a8797;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.login-register a {
+    color: #174b7a;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.login-register a:hover {
+    color: #b18b42;
+}
+
+.login-bottom {
+    border-top: 1px solid #edf0f4;
+    margin-top: 30px;
+    padding-top: 20px;
+    text-align: center;
+    color: #9aa5b2;
+    font-size: 11px;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
+
+    .login-wrapper {
+        flex-direction: column;
+    }
+
+    .login-brand,
+    .login-form-section {
+        width: 100%;
+    }
+
+    .login-brand {
+        padding: 40px 30px;
+    }
+
+    .login-brand h1 {
+        font-size: 29px;
+    }
+
+    .brand-footer {
+        margin-top: 25px;
+    }
+
+    .login-form-section {
+        padding: 35px 20px;
+    }
+
+    .login-card {
+        padding: 30px 24px;
+    }
+
+}
+
+/* =================================
+   REGISTRATION PAGE DESIGN
+================================= */
+
+.register-card {
+    max-width: 480px;
+    padding: 35px 40px;
+}
+
+.register-card .login-heading h2 {
+    font-size: 30px;
+}
+
+.register-card .login-heading p {
+    margin-bottom: 22px;
+}
+
+.register-card .form-group {
+    margin-bottom: 15px;
+}
+
+.register-card .form-group input {
+    padding: 13px 14px;
+}
+
+.register-card .login-register {
+    margin-top: 22px;
+}
+
+/* Registration page scrolling */
+
+.register-card {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.login-form-section {
+    min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+
+    .register-card {
+        padding: 28px 22px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+}
+
+/* =====================================
+   PROFESSIONAL STUDENT DASHBOARD
+===================================== */
+
+.student-dashboard-page {
+    margin: 0;
+    background: #f3f6fb;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #183453;
+}
+
+
+/* NAVIGATION BAR */
+
+.student-navbar {
+    background: #0d294b;
+    color: white;
+    padding: 17px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.10);
+}
+
+.student-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.student-logo {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #d8b66e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e8c77e;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.student-brand h2 {
+    margin: 0;
+    font-size: 19px;
+}
+
+.student-brand span {
+    color: #d8b66e;
+    font-size: 12px;
+}
+
+.student-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.student-nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.student-nav-links a:hover {
+    color: #e8c77e;
+}
+
+.student-nav-links form {
+    margin: 0;
+}
+
+.student-logout {
+    background: #bd4540;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 10px 19px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.student-logout:hover {
+    background: #a93330;
+}
+
+
+/* MAIN CONTENT */
+
+.student-main {
+    max-width: 1250px;
+    margin: auto;
+    padding: 35px 25px;
+}
+
+
+/* WELCOME BANNER */
+
+.student-welcome {
+    background: linear-gradient(120deg, #102f53, #1d527e);
+    color: white;
+    border-radius: 16px;
+    padding: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(16,47,83,0.13);
+}
+
+.student-eyebrow {
+    color: #e4c77f;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.student-welcome h1 {
+    font-size: 34px;
+    margin: 15px 0 10px;
+}
+
+.student-welcome p {
+    color: #d9e4f0;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0;
+}
+
+.welcome-icon {
+    font-size: 75px;
+}
+
+
+/* SERVICE CARDS */
+
+.student-services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin: 30px 0;
+}
+
+.service-card {
+    background: white;
+    padding: 25px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    color: #183453;
+    border: 1px solid #e5eaf1;
+    box-shadow: 0 5px 18px rgba(20,45,75,0.04);
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(20,45,75,0.10);
+    border-color: #d8b66e;
+}
+
+.service-icon {
+    font-size: 34px;
+}
+
+.service-card h3 {
+    margin: 0 0 7px;
+    color: #123657;
+}
+
+.service-card p {
+    margin: 0;
+    color: #8290a1;
+    font-size: 13px;
+}
+
+
+/* BOOKS SECTION */
+
+.student-books-section {
+    background: white;
+    padding: 32px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(20,45,75,0.05);
+}
+
+.student-section-heading h2 {
+    font-size: 26px;
+    color: #102f53;
+    margin: 10px 0;
+}
+
+.student-section-heading p {
+    color: #8491a0;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+
+/* SEARCH */
+
+.student-search {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.student-search input {
+    flex: 1;
+    min-width: 180px;
+    padding: 14px;
+    border: 1px solid #dce4ed;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.student-search input:focus {
+    border-color: #174b7a;
+    box-shadow: 0 0 0 3px rgba(23,75,122,0.08);
+}
+
+.student-search button {
+    background: #123b67;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 13px 24px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.student-search button:hover {
+    background: #b18b42;
+}
+
+.student-search a {
+    color: #174b7a;
+    text-decoration: none;
+    padding: 13px 10px;
+    font-weight: 600;
+}
+
+
+/* BOOKS TABLE */
+
+.student-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.student-books-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+.student-books-table th {
+    background: #102f53;
+    color: white;
+    padding: 16px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.student-books-table td {
+    padding: 16px;
+    border-bottom: 1px solid #e9edf2;
+    color: #52657a;
+    font-size: 14px;
+}
+
+.student-books-table tbody tr:nth-child(even) {
+    background: #f5f8fc;
+}
+
+.student-books-table tbody tr:hover {
+    background: #edf3fa;
+}
+
+.student-book-title {
+    font-weight: 600;
+    color: #153c63 !important;
+}
+
+.category-label {
+    background: #edf2f9;
+    color: #24517d;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.quantity-label {
+    color: #247b51;
+    font-weight: bold;
+}
+
+.student-empty {
+    text-align: center;
+    padding: 35px !important;
+    color: #8794a3 !important;
+}
+
+
+/* FOOTER */
+
+.student-footer {
+    text-align: center;
+    padding: 30px 10px 10px;
+    color: #8290a1;
+    font-size: 13px;
+}
+
+.student-footer p {
+    margin-bottom: 6px;
+}
+
+.student-footer span {
+    color: #b18b42;
+    font-size: 12px;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
+
+    .student-navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .student-nav-links {
+        gap: 15px;
+    }
+
+    .student-main {
+        padding: 22px 15px;
+    }
+
+    .student-welcome {
+        padding: 28px;
+    }
+
+    .student-welcome h1 {
+        font-size: 26px;
+    }
+
+    .welcome-icon {
+        font-size: 45px;
+    }
+
+    .student-services {
+        grid-template-columns: 1fr;
+    }
+
+    .student-books-section {
+        padding: 20px 15px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .welcome-icon {
+        display: none;
+    }
+
+    .student-search {
+        flex-direction: column;
+    }
+
+    .student-search button {
+        padding: 14px;
+    }
+
+}
+
+/* =====================================
+   MY BORROWED BOOKS PAGE
+===================================== */
+
+.borrowed-back {
+    margin-top: 28px;
+}
+
+.borrowed-back a {
+    display: inline-block;
+    background: #102f53;
+    color: white;
+    text-decoration: none;
+    padding: 13px 23px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.borrowed-back a:hover {
+    background: #b18b42;
+    transform: translateY(-2px);
+}
+
+
+/* RETURNED STATUS */
+
+.status-returned {
+    display: inline-block;
+    background: #e6f5ed;
+    color: #247b51;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* BORROWED STATUS */
+
+.status-borrowed {
+    display: inline-block;
+    background: #fff3dc;
+    color: #a36b12;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* OTHER STATUS */
+
+.status-other {
+    display: inline-block;
+    background: #edf2f9;
+    color: #24517d;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* EMPTY BORROWING RECORDS */
+
+.empty-book-icon {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.student-empty h3 {
+    color: #183b60;
+    margin: 5px 0;
+}
+
+.student-empty p {
+    color: #8794a3;
+    margin: 8px 0;
+}
+
+/* ==========================================
+   PROFESSIONAL ADMIN DASHBOARD
+========================================== */
+
+.admin-dashboard-page {
+    margin: 0;
+    background: #f2f5fa;
+    color: #183453;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+
+/* UNIVERSITY HEADER */
+
+.admin-header {
+    background: #102f53;
+    color: white;
+    min-height: 85px;
+    padding: 12px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 3px solid #d8b66e;
+}
+
+.admin-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.admin-brand img {
+    width: 57px;
+    height: 57px;
+    object-fit: contain;
+}
+
+.admin-brand h1 {
+    font-size: 19px;
+    margin: 0 0 5px;
+}
+
+.admin-brand p {
+    color: #e5c57b;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.admin-portal-label {
+    color: #f1d28d;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.admin-online-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #69d39a;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+
+/* MAIN LAYOUT */
+
+.admin-layout {
+    display: flex;
+    min-height: calc(100vh - 85px);
+}
+
+
+/* SIDEBAR */
+
+.admin-sidebar {
+    width: 255px;
+    min-width: 255px;
+    background: #ffffff;
+    border-right: 1px solid #e1e7ef;
+    padding: 27px 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-heading {
+    color: #9aa7b6;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    padding: 0 14px 18px;
+}
+
+.admin-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.admin-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #52677e;
+    text-decoration: none;
+    padding: 13px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.admin-nav-link span {
+    width: 22px;
+    font-size: 17px;
+    text-align: center;
+}
+
+.admin-nav-link:hover,
+.admin-nav-link.active {
+    background: #eaf0f8;
+    color: #123b67;
+}
+
+.admin-nav-link.active {
+    border-left: 4px solid #c5a45e;
+}
+
+
+/* SIDEBAR BOTTOM */
+
+.admin-sidebar-bottom {
+    margin-top: auto;
+    padding-top: 35px;
+}
+
+.sidebar-university {
+    text-align: center;
+    padding: 18px 5px;
+    background: #f3f6fa;
+    border-radius: 9px;
+    margin-bottom: 15px;
+}
+
+.sidebar-university span {
+    color: #b18b42;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.sidebar-university p {
+    color: #7d8b9b;
+    font-size: 10px;
+}
+
+.admin-sidebar-bottom form {
+    margin: 0;
+}
+
+.admin-logout-btn {
+    width: 100%;
+    background: #bd4540;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 13px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.admin-logout-btn:hover {
+    background: #a93330;
+}
+
+
+/* MAIN CONTENT */
+
+.admin-main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 32px;
+}
+
+
+/* PAGE HEADING */
+
+.admin-page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.admin-eyebrow {
+    color: #b18b42;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    font-weight: bold;
+}
+
+.admin-page-heading h2 {
+    color: #102f53;
+    font-size: 27px;
+    margin: 7px 0;
+}
+
+.admin-page-heading p {
+    color: #8290a1;
+    font-size: 13px;
+    margin: 0;
+}
+
+.admin-welcome-label {
+    background: white;
+    color: #52677e;
+    padding: 11px 16px;
+    border: 1px solid #e4eaf1;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.admin-welcome-label span {
+    color: #299b63;
+}
+
+
+/* WELCOME BANNER */
+
+.admin-welcome-banner {
+    background: linear-gradient(115deg, #102f53, #286092);
+    color: white;
+    border-radius: 14px;
+    padding: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 8px 22px rgba(16,47,83,0.12);
+}
+
+.admin-banner-label {
+    color: #e8c77e;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.admin-welcome-banner h1 {
+    font-size: 27px;
+    margin: 12px 0;
+}
+
+.admin-welcome-banner p {
+    color: #d8e4f0;
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.admin-banner-icon {
+    font-size: 65px;
+}
+
+
+/* STATISTICS */
+
+.admin-statistics {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.admin-stat-card {
+    background: white;
+    border: 1px solid #e5eaf1;
+    border-radius: 11px;
+    padding: 19px;
+    box-shadow: 0 4px 14px rgba(20,45,75,0.035);
+    transition: 0.25s;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(20,45,75,0.08);
+}
+
+.admin-stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    color: #7b8b9c;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.admin-stat-icon {
+    font-size: 23px;
+}
+
+.admin-stat-card h2 {
+    color: #123b67;
+    font-size: 30px;
+    margin: 13px 0 5px;
+}
+
+.admin-stat-card p {
+    color: #9aa6b4;
+    font-size: 11px;
+    margin: 0;
+}
+
+
+/* SEARCH SECTION */
+
+.admin-search-section {
+    background: white;
+    padding: 20px;
+    border-radius: 11px;
+    border: 1px solid #e5eaf1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.admin-search-section h3 {
+    color: #183b5e;
+    font-size: 16px;
+    margin: 0 0 5px;
+}
+
+.admin-search-section p {
+    color: #8b98a7;
+    font-size: 12px;
+    margin: 0;
+}
+
+.admin-search-box {
+    display: flex;
+    gap: 9px;
+    flex: 1;
+    max-width: 500px;
+}
+
+.admin-search-box input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #dce4ed;
+    border-radius: 7px;
+    outline: none;
+}
+
+.admin-search-box input:focus {
+    border-color: #174b7a;
+}
+
+.admin-search-box button {
+    background: #123b67;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.admin-search-box button:hover {
+    background: #b18b42;
+}
+
+
+/* MODULE SECTION */
+
+.admin-modules-section {
+    scroll-margin-top: 20px;
+}
+
+.admin-section-heading {
+    margin-bottom: 20px;
+}
+
+.admin-section-heading h2 {
+    color: #102f53;
+    font-size: 23px;
+    margin: 8px 0;
+}
+
+.admin-section-heading p {
+    color: #8491a0;
+    font-size: 13px;
+    margin: 0;
+}
+
+
+/* MODULE CARDS */
+
+.admin-module-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.admin-module-card {
+    background: white;
+    border: 1px solid #e4eaf1;
+    border-radius: 12px;
+    padding: 23px;
+    box-shadow: 0 4px 15px rgba(20,45,75,0.035);
+    transition: 0.3s;
+}
+
+.admin-module-card:hover {
+    transform: translateY(-5px);
+    border-color: #d8b66e;
+    box-shadow: 0 10px 24px rgba(20,45,75,0.09);
+}
+
+.admin-module-icon {
+    width: 49px;
+    height: 49px;
+    background: #edf2f9;
+    border-radius: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.admin-module-card h3 {
+    color: #163c62;
+    font-size: 16px;
+    margin: 17px 0 9px;
+}
+
+.admin-module-card p {
+    color: #8491a0;
+    font-size: 12px;
+    line-height: 1.7;
+    min-height: 40px;
+}
+
+.admin-module-card a {
+    display: inline-block;
+    color: #174b7a;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 8px;
+}
+
+.admin-module-card a:hover {
+    color: #b18b42;
+}
+
+
+/* SEARCH EMPTY MESSAGE */
+
+.admin-no-results {
+    text-align: center;
+    padding: 25px;
+    color: #8290a1;
+}
+
+
+/* FOOTER */
+
+.admin-footer {
+    text-align: center;
+    padding: 35px 10px 10px;
+    color: #8491a0;
+    font-size: 12px;
+}
+
+.admin-footer span {
+    color: #b18b42;
+    font-size: 11px;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 1100px) {
+
+    .admin-statistics {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .admin-module-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .admin-layout {
+        flex-direction: column;
+    }
+
+    .admin-sidebar {
+        width: auto;
+        min-width: 0;
+        padding: 15px;
+    }
+
+    .admin-navigation {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-sidebar-bottom {
+        padding-top: 15px;
+    }
+
+    .admin-main-content {
+        padding: 22px 16px;
+    }
+
+    .admin-search-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-search-box {
+        max-width: none;
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .admin-brand h1 {
+        font-size: 15px;
+    }
+
+    .admin-portal-label {
+        margin-left: 73px;
+    }
+
+    .admin-statistics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-module-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-page-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-welcome-banner {
+        padding: 23px;
+    }
+
+    .admin-welcome-banner h1 {
+        font-size: 21px;
+    }
+
+    .admin-banner-icon {
+        font-size: 40px;
+    }
+
+}

@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | KIU Smart Library</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="student-dashboard-page">
+
+    <!-- Navigation Bar -->
+    <nav class="student-navbar">
+
+        <div class="student-brand">
+            <div class="student-logo">KIU</div>
+
+            <div>
+                <h2>KIU Smart Library</h2>
+                <span>Student Portal</span>
+            </div>
+        </div>
+
+        <div class="student-nav-links">
+            <a href="{{ url_for('student_dashboard') }}">Home</a>
+
+            <a href="{{ url_for('my_borrowed_books') }}">
+                My Borrowed Books
+            </a>
+<a href="{{ url_for('recommend_books_page') }}">
+    🤖 AI Book Assistant
+</a>
+            <form method="POST" action="{{ url_for('logout') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="student-logout">
+                    Logout
+                </button>
+            </form>
+        </div>
+
+    </nav>
+
+
+    <main class="student-main">
+
+        <!-- Welcome Banner -->
+        <section class="student-welcome">
+
+            <div>
+                <span class="student-eyebrow">
+                    KARAKORAM INTERNATIONAL UNIVERSITY
+                </span>
+
+                <h1>Welcome, {{ session["username"] }}!</h1>
+
+                <p>
+                    Explore knowledge, discover books and continue
+                    your learning journey with KIU Smart Library.
+                </p>
+            </div>
+
+            <div class="welcome-icon">📚</div>
+
+        </section>
+
+
+        <!-- Services -->
+        <section class="student-services">
+
+            <a href="{{ url_for('student_dashboard') }}"
+               class="service-card">
+
+                <span class="service-icon">📖</span>
+
+                <div>
+                    <h3>Available Books</h3>
+                    <p>Explore books in the library</p>
+                </div>
+
+            </a>
+
+
+            <a href="{{ url_for('my_borrowed_books') }}"
+               class="service-card">
+
+                <span class="service-icon">📚</span>
+
+                <div>
+                    <h3>My Borrowed Books</h3>
+                    <p>View your borrowing history</p>
+                </div>
+
+            </a>
+
+        </section>
+
+
+        <!-- Available Books -->
+        <section class="student-books-section">
+
+            <div class="student-section-heading">
+
+                <div>
+                    <span class="student-eyebrow">
+                        LIBRARY COLLECTION
+                    </span>
+
+                    <h2>Available Books</h2>
+
+                    <p>Find your next book to read and learn.</p>
+                </div>
+
+            </div>
+
+
+            <!-- Search -->
+            <form method="GET"
+                  action="{{ url_for('student_dashboard') }}"
+                  class="student-search">
+
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search by title, author or category..."
+                    value="{{ search_query }}"
+                >
+
+                <button type="submit">Search</button>
+
+                <a href="{{ url_for('student_dashboard') }}">
+                    Show All
+                </a>
+
+            </form>
+
+
+            <!-- Books Table -->
+            <div class="student-table-wrapper">
+
+                <table class="student-books-table">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Available Quantity</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for book in available_books %}
+
+                        <tr>
+                            <td>{{ book["id"] }}</td>
+                            <td class="student-book-title">
+                                {{ book["title"] }}
+                            </td>
+                            <td>{{ book["author"] }}</td>
+                            <td>
+                                <span class="category-label">
+                                    {{ book["category"] }}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="quantity-label">
+                                    {{ book["quantity"] }}
+                                </span>
+                            </td>
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+                            <td colspan="5" class="student-empty">
+                                No available books found.
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="student-footer">
+            <p>
+                KIU Smart Library Management System
+            </p>
+
+            <span>
+                Knowledge • Learning • Excellence
+            </span>
+        </footer>
+
+    </main>
+
+</body>
+</html>
+
