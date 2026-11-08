@@ -1,4 +1,4 @@
-﻿# Smart Library Management System
+# Smart Library Management System
 
 A web-based Library Management System developed for Karakoram International University (KIU).
 
@@ -36,13 +36,13 @@ This system helps manage library books, students, borrowing, returning, and libr
 2. Create a virtual environment.
 3. Install dependencies:
 
-   pip install -r requirements.txt
+   `pip install -r requirements.txt`
 
 4. Create a `.env` file in the project root.
 5. Add your own SECRET_KEY to the `.env` file.
 6. Run the application:
 
-   python app.py
+   `python app.py`
 
 7. Open http://127.0.0.1:5000 in your browser.
 
