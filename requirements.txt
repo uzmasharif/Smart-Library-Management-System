@@ -2,3 +2,4 @@ Flask
 Flask-WTF
 python-dotenv
 gunicorn
+psycopg[binary]

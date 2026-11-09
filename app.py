@@ -9,7 +9,7 @@ import os
 from dotenv import load_dotenv
 from flask_wtf.csrf import CSRFProtect
 import sqlite3
-
+import psycopg
 load_dotenv()
 
 app = Flask(__name__)
@@ -112,7 +112,7 @@ def home():
         """SELECT COUNT(*) AS total
            FROM borrow_records
            WHERE status = 'Borrowed'
-           AND due_date < date('now')"""
+           AND due_date < CURRENT_DATE"""
     ).fetchone()["total"]
 
     available_books = connection.execute(
@@ -287,7 +287,7 @@ def register():
 
             return redirect(url_for("login"))
 
-        except sqlite3.IntegrityError:
+        except (sqlite3.IntegrityError, psycopg.IntegrityError):
 
             connection.rollback()
             connection.close()
@@ -571,7 +571,7 @@ def borrow():
            JOIN students ON borrow_records.student_id = students.id
            JOIN books ON borrow_records.book_id = books.id
            WHERE borrow_records.status = 'Borrowed'
-           AND borrow_records.due_date < date('now')
+           AND borrow_records.due_date < CURRENT_DATE
            ORDER BY borrow_records.due_date ASC"""
     ).fetchall()
     connection.close()
@@ -710,7 +710,7 @@ def overdue():
            JOIN students ON borrow_records.student_id = students.id
            JOIN books ON borrow_records.book_id = books.id
            WHERE borrow_records.status = 'Borrowed'
-           AND borrow_records.due_date < date('now')
+           AND borrow_records.due_date < CURRENT_DATE
            ORDER BY borrow_records.due_date ASC"""
     ).fetchall()
 
@@ -747,7 +747,7 @@ def reports():
         """SELECT COUNT(*) AS total
            FROM borrow_records
            WHERE status = 'Borrowed'
-           AND due_date < date('now')"""
+           AND due_date < CURRENT_DATE"""
     ).fetchone()["total"]
 
     available_copies = connection.execute(
@@ -767,7 +767,7 @@ def reports():
     )
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 

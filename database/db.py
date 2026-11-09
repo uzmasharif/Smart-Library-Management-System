@@ -1,22 +1,63 @@
 
 import sqlite3
 import os
+from dotenv import load_dotenv
+
+# Environment variables load karein
+load_dotenv()
 
 # Project folder ka correct path
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Database folder ka path
+# Local SQLite database ka path
 DATABASE_PATH = os.path.join(BASE_DIR, "database", "library.db")
+
+# Render par Supabase ka DATABASE_URL milega
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+
+class PostgresConnection:
+
+    def __init__(self, connection):
+        self.connection = connection
+
+    def execute(self, query, parameters=()):
+        # SQLite placeholders (?) ko PostgreSQL placeholders (%s) mein badlein
+        query = query.replace("?", "%s")
+        return self.connection.execute(query, parameters)
+
+    def commit(self):
+        self.connection.commit()
+
+    def rollback(self):
+        self.connection.rollback()
+
+    def close(self):
+        self.connection.close()
+
+    def __getattr__(self, name):
+        return getattr(self.connection, name)
 
 
 def get_db_connection():
 
+    # Agar DATABASE_URL available hai to PostgreSQL use hoga
+    if DATABASE_URL:
+
+        import psycopg
+        from psycopg.rows import dict_row
+
+        connection = psycopg.connect(
+            DATABASE_URL,
+            row_factory=dict_row
+        )
+
+        return PostgresConnection(connection)
+
+    # Warna local SQLite use hoga
     connection = sqlite3.connect(DATABASE_PATH)
 
-    # Database rows ko dictionary-style access dena
     connection.row_factory = sqlite3.Row
-
-    # Foreign keys ko enforce karna
     connection.execute("PRAGMA foreign_keys = ON")
 
     return connection
@@ -24,6 +65,11 @@ def get_db_connection():
 
 def create_tables():
 
+    # Supabase tables pehle hi create kiye ja chuke hain
+    if DATABASE_URL:
+        return
+
+    # Sirf local SQLite ke liye tables create honge
     connection = get_db_connection()
 
     connection.execute("""
